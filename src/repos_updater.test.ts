@@ -7,5 +7,5 @@ test("read_repos", () => {
     "joy_to_twist",
     "master"
   );
-  expect(updater).toBeDefined()
+  expect(updater).toBeDefined();
 });

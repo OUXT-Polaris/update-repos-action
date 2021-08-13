@@ -9,7 +9,7 @@ export class ReposUpdater {
   private target_repos_path_: string;
   private target_package_name_: string;
   private target_version_: string;
-  private repositories_ : Array<Repository>;
+  private repositories_: Array<Repository>;
 
   get repos_path(): string {
     return this.repos_path_;
@@ -28,24 +28,31 @@ export class ReposUpdater {
   }
 
   /**
+   * update
+   */
+  private update() {
+    this.repositories_.forEach((repository) => {
+      if (repository.name == this.target_package_name_) {
+      }
+    });
+  }
+
+  /**
    * parse_yaml
    */
   private parse_yaml(yaml_string: string) {
     try {
       const data = js_yaml.load(yaml_string);
-      Object.keys(data.repositories).forEach(
-        (package_path) =>
-        {
-          const repo = new Repository(
-            package_path.split("/")[package_path.split("/").length - 1],
-            package_path,
-            data.repositories[package_path]['type'],
-            data.repositories[package_path]['url'],
-            data.repositories[package_path]['version']
-          )
-          this.repositories_.push(repo)
-        }
-      );
+      Object.keys(data.repositories).forEach((package_path) => {
+        const repo = new Repository(
+          package_path.split("/")[package_path.split("/").length - 1],
+          package_path,
+          data.repositories[package_path]["type"],
+          data.repositories[package_path]["url"],
+          data.repositories[package_path]["version"]
+        );
+        this.repositories_.push(repo);
+      });
     } catch (err) {
       throw err;
     }
@@ -64,5 +71,6 @@ export class ReposUpdater {
     this.target_version_ = target_version;
     const yaml_string = fs.readFileSync(this.repos_path_, "utf8");
     this.parse_yaml(yaml_string);
+    this.update();
   }
 }

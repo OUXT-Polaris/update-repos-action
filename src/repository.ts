@@ -10,6 +10,31 @@ export class Repository {
   private type_: VCS_TYPE;
   private url_: string;
   private version_: string;
+
+  public get name(): string {
+    return this.name;
+  }
+
+  public get path(): string {
+    return this.path_;
+  }
+
+  public get type(): string {
+    return this.type_;
+  }
+
+  public get url(): string {
+    return this.url_;
+  }
+
+  public get version(): string {
+    return this.version_;
+  }
+
+  public set version(v: string) {
+    this.version_ = v;
+  }
+
   constructor(
     name: string,
     path: string,
