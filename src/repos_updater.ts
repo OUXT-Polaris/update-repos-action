@@ -1,4 +1,6 @@
-class ReposReader {
+import 'js-yaml'
+
+class ReposUpdater {
   private repos_path_: string;
   private target_repos_path_: string;
   private target_package_name_: string;
