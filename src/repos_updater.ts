@@ -1,6 +1,6 @@
-import 'js-yaml'
+// import "js-yaml";
 
-class ReposUpdater {
+export class ReposUpdater {
   private repos_path_: string;
   private target_repos_path_: string;
   private target_package_name_: string;
