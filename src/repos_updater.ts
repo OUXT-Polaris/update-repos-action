@@ -1,4 +1,7 @@
-// import "js-yaml";
+import * as fs from "fs";
+import * as yaml from "js-yaml";
+import { Repository } from "repository"
+import { string } from "yargs";
 
 export class ReposUpdater {
   private repos_path_: string;
@@ -22,6 +25,17 @@ export class ReposUpdater {
     return this.target_version_;
   }
 
+  /**
+   * parse_yaml
+   */
+  private parse_yaml(yaml_string: string) {
+    try {
+      const doc = yaml.load(yaml_string);
+    } catch (err) {
+      throw err;
+    }
+  }
+
   constructor(
     repos_path: string,
     target_repos_path: string,
@@ -32,5 +46,9 @@ export class ReposUpdater {
     this.target_repos_path_ = target_repos_path;
     this.target_package_name_ = target_package_name;
     this.target_version_ = target_version;
+    fs.readFile(this.repos_path_, (err, data) => {
+      if (err) throw err;
+      this.parse_yaml(data.toString());
+    });
   }
 }
