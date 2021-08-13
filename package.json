@@ -1,5 +1,5 @@
 {
-  "name": "update_repos_action",
+  "name": "update-repos-action",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
