@@ -1,6 +1,7 @@
 import * as fs from "fs";
-import * as yaml from "js-yaml";
-import { Repository } from "repository"
+import YAML from "yaml";
+const js_yaml = require("js-yaml");
+import { Repository } from "./repository";
 import { string } from "yargs";
 
 export class ReposUpdater {
@@ -8,6 +9,7 @@ export class ReposUpdater {
   private target_repos_path_: string;
   private target_package_name_: string;
   private target_version_: string;
+  private repositories_ : Array<Repository>;
 
   get repos_path(): string {
     return this.repos_path_;
@@ -30,7 +32,20 @@ export class ReposUpdater {
    */
   private parse_yaml(yaml_string: string) {
     try {
-      const doc = yaml.load(yaml_string);
+      const data = js_yaml.load(yaml_string);
+      Object.keys(data.repositories).forEach(
+        (package_path) =>
+        {
+          const repo = new Repository(
+            package_path.split("/")[package_path.split("/").length - 1],
+            package_path,
+            data.repositories[package_path]['type'],
+            data.repositories[package_path]['url'],
+            data.repositories[package_path]['version']
+          )
+          this.repositories_.push(repo)
+        }
+      );
     } catch (err) {
       throw err;
     }
@@ -42,13 +57,12 @@ export class ReposUpdater {
     target_package_name: string,
     target_version: string
   ) {
+    this.repositories_ = new Array<Repository>();
     this.repos_path_ = repos_path;
     this.target_repos_path_ = target_repos_path;
     this.target_package_name_ = target_package_name;
     this.target_version_ = target_version;
-    fs.readFile(this.repos_path_, (err, data) => {
-      if (err) throw err;
-      this.parse_yaml(data.toString());
-    });
+    const yaml_string = fs.readFileSync(this.repos_path_, "utf8");
+    this.parse_yaml(yaml_string);
   }
 }
