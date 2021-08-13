@@ -41,10 +41,8 @@ export class ReposUpdater {
   private write() {
     this.repositories_.forEach((repository) => 
     {
-      /*
-      const info = repository.getInfo();
+      const info = js_yaml.dump(repository.getInfo())
       console.log(info)
-      */
     });
   }
 
@@ -83,5 +81,6 @@ export class ReposUpdater {
     const yaml_string = fs.readFileSync(this.repos_path_, "utf8");
     this.parse_yaml(yaml_string);
     this.update();
+    this.write();
   }
 }
