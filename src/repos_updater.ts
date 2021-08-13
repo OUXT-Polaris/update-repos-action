@@ -1,8 +1,8 @@
 import * as fs from "fs";
-import YAML from "yaml";
 const js_yaml = require("js-yaml");
 import { Repository } from "./repository";
 import { string } from "yargs";
+import { YAMLMap } from "yaml/types";
 
 export class ReposUpdater {
   private repos_path_: string;
@@ -33,7 +33,18 @@ export class ReposUpdater {
   private update() {
     this.repositories_.forEach((repository) => {
       if (repository.name == this.target_package_name_) {
+        repository.version = this.target_version_;
       }
+    });
+  }
+
+  private write() {
+    this.repositories_.forEach((repository) => 
+    {
+      /*
+      const info = repository.getInfo();
+      console.log(info)
+      */
     });
   }
 

@@ -12,7 +12,7 @@ export class Repository {
   private version_: string;
 
   public get name(): string {
-    return this.name;
+    return this.name_;
   }
 
   public get path(): string {
@@ -33,6 +33,13 @@ export class Repository {
 
   public set version(v: string) {
     this.version_ = v;
+  }
+
+  /**
+   * getInfo
+   */
+  public getInfo() {
+    return { type: this.type_, url: this.url_, version: this.version_ };
   }
 
   constructor(
