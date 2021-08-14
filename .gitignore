@@ -3,6 +3,5 @@ log
 node_modules
 src/*.js
 coverage
-dist
 *.js
 packages_update.repos
