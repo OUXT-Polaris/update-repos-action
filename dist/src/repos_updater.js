@@ -21,8 +21,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReposUpdater = void 0;
 var fs = __importStar(require("fs"));
-var js_yaml = require("js-yaml");
 var repository_1 = require("./repository");
+var js_yaml = require("js-yaml");
 var ReposUpdater = /** @class */ (function () {
     function ReposUpdater(repos_path, update_repos_path, target_package_name, target_version) {
         this.repositories_ = new Array();

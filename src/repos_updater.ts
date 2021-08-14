@@ -1,6 +1,7 @@
 import * as fs from "fs";
-const js_yaml = require("js-yaml");
 import { Repository } from "./repository";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const js_yaml = require("js-yaml");
 
 export class ReposUpdater {
   private repos_path_: string;
