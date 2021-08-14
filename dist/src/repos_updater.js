@@ -89,16 +89,11 @@ var ReposUpdater = /** @class */ (function () {
      */
     ReposUpdater.prototype.parse_yaml = function (yaml_string) {
         var _this = this;
-        try {
-            var data_1 = js_yaml.load(yaml_string);
-            Object.keys(data_1.repositories).forEach(function (package_path) {
-                var repo = new repository_1.Repository(package_path.split("/")[package_path.split("/").length - 1], package_path, data_1.repositories[package_path]["type"], data_1.repositories[package_path]["url"], data_1.repositories[package_path]["version"]);
-                _this.repositories_.push(repo);
-            });
-        }
-        catch (err) {
-            throw err;
-        }
+        var data = js_yaml.load(yaml_string);
+        Object.keys(data.repositories).forEach(function (package_path) {
+            var repo = new repository_1.Repository(package_path.split("/")[package_path.split("/").length - 1], package_path, data.repositories[package_path]["type"], data.repositories[package_path]["url"], data.repositories[package_path]["version"]);
+            _this.repositories_.push(repo);
+        });
     };
     return ReposUpdater;
 }());

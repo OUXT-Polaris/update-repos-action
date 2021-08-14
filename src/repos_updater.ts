@@ -57,21 +57,17 @@ export class ReposUpdater {
    * parse_yaml
    */
   private parse_yaml(yaml_string: string) {
-    try {
-      const data = js_yaml.load(yaml_string);
-      Object.keys(data.repositories).forEach((package_path) => {
-        const repo = new Repository(
-          package_path.split("/")[package_path.split("/").length - 1],
-          package_path,
-          data.repositories[package_path]["type"],
-          data.repositories[package_path]["url"],
-          data.repositories[package_path]["version"]
-        );
-        this.repositories_.push(repo);
-      });
-    } catch (err) {
-      throw err;
-    }
+    const data = js_yaml.load(yaml_string);
+    Object.keys(data.repositories).forEach((package_path) => {
+      const repo = new Repository(
+        package_path.split("/")[package_path.split("/").length - 1],
+        package_path,
+        data.repositories[package_path]["type"],
+        data.repositories[package_path]["url"],
+        data.repositories[package_path]["version"]
+      );
+      this.repositories_.push(repo);
+    });
   }
 
   constructor(
