@@ -1,0 +1,22 @@
+
+name: 'update-repos-action'
+description: 'javascript action for updating repos file in ROS.'
+author: 'Masaya Kataoka'
+inputs:
+  input_repos_file:
+    required: true
+    description: 'input repos file path'
+  output_repos_file:
+    required: true
+    description: 'output repos file path'
+  package_name:
+    required: false
+    description: 'package name you want to update version'
+    default: ''
+  target_version:
+    required: false
+    description: 'target version you want to install'
+    defaulr: 'master'
+runs:
+  using: 'node10'
+  main: 'dist/repos_updater.js'
