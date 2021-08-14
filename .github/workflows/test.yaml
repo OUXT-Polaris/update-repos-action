@@ -1,0 +1,30 @@
+
+name: CI
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - run: npm run build
+      - run: npm run lint
+      - run: npm run test
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: test run
+        uses: ./
+        with:
+          input_repos_file: ./src/packages.repos
+          output_repos_file: packages_update.repos
+          package_name: joy_to_twist
+          target_version: master
+      - name: check output
+        run: |
+          cat packages_update.repos
