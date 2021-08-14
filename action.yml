@@ -2,6 +2,9 @@
 name: 'update-repos-action'
 description: 'javascript action for updating repos file in ROS.'
 author: 'Masaya Kataoka'
+branding:
+  icon: "arrow-right"
+  color: "blue"
 inputs:
   input_repos_file:
     required: true
