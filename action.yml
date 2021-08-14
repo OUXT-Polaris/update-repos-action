@@ -18,5 +18,5 @@ inputs:
     description: 'target version you want to install'
     defaulr: 'master'
 runs:
-  using: 'node10'
+  using: 'node12'
   main: 'dist/update_repos_action.js'
