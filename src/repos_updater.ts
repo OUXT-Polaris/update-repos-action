@@ -1,8 +1,6 @@
 import * as fs from "fs";
 const js_yaml = require("js-yaml");
 import { Repository } from "./repository";
-import { string } from "yargs";
-import { YAMLMap } from "yaml/types";
 
 export class ReposUpdater {
   private repos_path_: string;
@@ -39,10 +37,10 @@ export class ReposUpdater {
   }
 
   private write() {
-    var dict: {
+    const dict: {
       [package_path: string]: { type: string; url: string; version: string };
     } = {};
-    var repos_dict: {
+    const repos_dict: {
       [repositories: string]: {
         [package_path: string]: { type: string; url: string; version: string };
       };
