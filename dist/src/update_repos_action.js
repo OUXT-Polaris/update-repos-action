@@ -36,12 +36,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var repos_updater_1 = require("./repos_updater");
 // const core = require('@actions/core');
 var core_1 = require("@actions/core");
 function main() {
     return __awaiter(this, void 0, void 0, function () {
+        var input_repos_file, output_repos_file, package_name, target_version;
         return __generator(this, function (_a) {
             try {
+                input_repos_file = core_1.getInput("input_repos_file");
+                output_repos_file = core_1.getInput("output_repos_file");
+                package_name = core_1.getInput("package_name");
+                target_version = core_1.getInput("target_version");
+                new repos_updater_1.ReposUpdater(input_repos_file, output_repos_file, package_name, target_version);
             }
             catch (error) {
                 core_1.setFailed(error.message);

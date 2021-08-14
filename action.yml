@@ -19,4 +19,4 @@ inputs:
     defaulr: 'master'
 runs:
   using: 'node10'
-  main: 'dist/repos_updater.js'
+  main: 'dist/update_repos_action.js'
