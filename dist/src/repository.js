@@ -1,10 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Repository = void 0;
+exports.Repository = exports.RepositoryInfo = void 0;
 var VCS_TYPE = {
     unknown: "unkown",
     git: "git",
 };
+var RepositoryInfo = /** @class */ (function () {
+    function RepositoryInfo(type, url, version) {
+        this.type = type;
+        this.url = url;
+        this.version = version;
+    }
+    return RepositoryInfo;
+}());
+exports.RepositoryInfo = RepositoryInfo;
 var Repository = /** @class */ (function () {
     function Repository(name, path, type, url, version) {
         this.name_ = name;
@@ -61,7 +70,7 @@ var Repository = /** @class */ (function () {
      * getInfo
      */
     Repository.prototype.getInfo = function () {
-        return { type: this.type_, url: this.url_, version: this.version_ };
+        return new RepositoryInfo(this.type_, this.url_, this.version_);
     };
     return Repository;
 }());

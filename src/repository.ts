@@ -4,6 +4,17 @@ const VCS_TYPE = {
 } as const;
 type VCS_TYPE = typeof VCS_TYPE[keyof typeof VCS_TYPE];
 
+export class RepositoryInfo {
+  public type: string;
+  public url: string;
+  public version: string;
+  constructor(type: string, url: string, version: string) {
+    this.type = type;
+    this.url = url;
+    this.version = version;
+  }
+}
+
 export class Repository {
   private name_: string;
   private path_: string;
@@ -38,8 +49,8 @@ export class Repository {
   /**
    * getInfo
    */
-  public getInfo() {
-    return { type: this.type_, url: this.url_, version: this.version_ };
+  public getInfo(): RepositoryInfo {
+    return new RepositoryInfo(this.type_, this.url_, this.version_);
   }
 
   constructor(

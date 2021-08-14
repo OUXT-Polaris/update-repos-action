@@ -22,6 +22,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReposUpdater = void 0;
 var fs = __importStar(require("fs"));
 var repository_1 = require("./repository");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 var js_yaml = require("js-yaml");
 var ReposUpdater = /** @class */ (function () {
     function ReposUpdater(repos_path, update_repos_path, target_package_name, target_version) {
