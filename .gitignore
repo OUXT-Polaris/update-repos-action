@@ -5,3 +5,4 @@ src/*.js
 coverage
 dist
 *.js
+packages_update.repos
