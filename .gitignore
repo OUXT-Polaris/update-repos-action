@@ -1,7 +1,7 @@
 .vscode
 log
 node_modules
-src/*.js
+./src/*.js
 coverage
-*.js
+jest.config.js
 packages_update.repos
