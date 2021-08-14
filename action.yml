@@ -19,4 +19,4 @@ inputs:
     defaulr: 'master'
 runs:
   using: 'node12'
-  main: 'dist/update_repos_action.js'
+  main: 'dist/src/update_repos_action.js'
